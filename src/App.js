@@ -1,11 +1,12 @@
-import "./App.css";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Welcome to Medium</p>
-      </header>
+    <div>
+      <Navbar />
+
+      <Home />
     </div>
   );
 }
