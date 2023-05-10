@@ -63,6 +63,18 @@
       "body": "Practicing gratitude can improve your mental health and overall well-being. In this blog post",
       "date": "2022-05-10",
       "duration_to_read": "5 minutes"
+    },
+    {
+      "title": "my first blog",
+      "body": "This is my first blog writen with API react",
+      "author": "Jane Smith",
+      "id": 9
+    },
+    {
+      "title": "rere",
+      "body": "fssdsdsdsdsds",
+      "author": "John Doe",
+      "id": 11
     }
   ]
 }

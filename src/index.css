@@ -240,3 +240,7 @@ body {
     font-size: 14px;
     line-height: 20px;
 }
+
+.mt-9 {
+    margin-top: 9rem;
+}

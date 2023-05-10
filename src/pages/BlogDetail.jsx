@@ -1,41 +1,57 @@
-import ArticlePost from "../components/ArticlePost";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
+import useFetch from "../hooks/useFetch";
 
 function BlogDetail() {
+  const { id } = useParams();
+  const {
+    data: blog,
+    loading,
+    error,
+  } = useFetch(`http://localhost:3001/blogs/${id}/`);
+  const navigate = useNavigate();
+  const handleDelete = () => {
+    fetch(`http://localhost:3001/blogs/${id}/`, { method: "DELETE" }).then(
+      () => {
+        navigate("/");
+      }
+    );
+  };
+
   return (
-    <section className="container-fluid articles mt-2">
-      <br />
-      <br />
-      <br />
-      <br />
+    <section className="container-fluid articles mt-9">
       <div className="container">
+        {loading && <h3>Loading...</h3>}
+        <h1>{error && error}</h1>
         <div className="row d-flex justify-content-center">
           <div className="col-md-12 col-lg-8 order-2 order-lg-1 mt-5">
-            <h1>Blog details</h1>
+            <h1>Blog details {id}</h1>
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">{blog.title}</h5>
 
-                <p class="card-text">
-                  <small class="text-body-secondary">
-                    Last updated 3 mins ago
+                <p className="card-text">
+                  <small className="text-body-secondary">
+                    {blog.date} · {blog.duration_to_read} read ·
                   </small>
                 </p>
               </div>
               <img
                 src="https://miro.medium.com/fit/c/200/134/1*GAyvD3bIRca3EVotLMSUqQ.jpeg"
-                class="card-img-bottom"
+                className="card-img-bottom"
                 alt="..."
               />
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae ex, enim ipsam ullam qui esse dicta exercitationem
-                nemo earum debitis veritatis nisi beatae quis officiis ratione
-                omnis libero hic similique numquam reiciendis!
-              </p>
+              <p className="card-text">{blog.body}</p>
             </div>
+          </div>
+          <div className="col-12 mt-3">
+            <button
+              type="submit"
+              className="btn btn-danger"
+              onClick={handleDelete}
+            >
+              Delete blog
+            </button>
           </div>
           <Footer />
         </div>
