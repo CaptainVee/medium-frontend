@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import useFetch from "../hooks/useFetch";
 
@@ -8,14 +8,11 @@ function BlogDetail() {
     data: blog,
     loading,
     error,
+    deleteBlog,
   } = useFetch(`http://localhost:3001/blogs/${id}/`);
-  const navigate = useNavigate();
+
   const handleDelete = () => {
-    fetch(`http://localhost:3001/blogs/${id}/`, { method: "DELETE" }).then(
-      () => {
-        navigate("/");
-      }
-    );
+    deleteBlog(`http://localhost:3001/blogs/${id}/`);
   };
 
   return (
@@ -26,9 +23,9 @@ function BlogDetail() {
         <div className="row d-flex justify-content-center">
           <div className="col-md-12 col-lg-8 order-2 order-lg-1 mt-5">
             <h1>Blog details {id}</h1>
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{blog.title}</h5>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{blog.title}</h5>
 
                 <p className="card-text">
                   <small className="text-body-secondary">
